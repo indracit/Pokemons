@@ -1,118 +1,84 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, Platform, StyleSheet, ScrollView} from 'react-native';
+import Pokemoncard from './components/Pokemoncard';
+export default function App() {
+  const charmanderData = {
+    name: 'Charmander',
+    image: require('./assets/charmander.png'),
+    type: 'Fire',
+    hp: 39,
+    moves: ['Scratch', 'Ember', 'Growl', 'Leer'],
+    weakness: ['Water', 'Rock'],
+  };
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  const squirtleData = {
+    name: 'Squirtle',
+    image: require('./assets/squirtle.png'), // Replace with the actual image path
+    type: 'Water',
+    hp: 44,
+    moves: ['Tackle', 'Water Gun', 'Tail Whip', 'Withdraw'],
+    weakness: ['Electric', 'Grass'],
+  };
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+  const bulbasaurData = {
+    name: 'Bulbasaur',
+    image: require('./assets/bulbasaur.png'), // Replace with the actual image path
+    type: 'Grass',
+    hp: 45,
+    moves: ['Tackle', 'Vine Whip', 'Growl', 'Leech Seed'],
+    weakness: ['Fire', 'Ice', 'Flying', 'Psychic'],
+  };
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const pikachuData = {
+    name: 'Pikachu',
+    image: require('./assets/pikachu.png'), // Replace with the actual image path
+    type: 'Electric',
+    hp: 35,
+    moves: ['Quick Attack', 'Thunderbolt', 'Tail Whip', 'Growl'],
+    weakness: ['Ground'],
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
+    <SafeAreaView style={styles.newcontainer}>
+      <ScrollView>
+        <Pokemoncard {...charmanderData} />
+        <Pokemoncard {...squirtleData} />
+        <Pokemoncard {...bulbasaurData} />
+        <Pokemoncard {...pikachuData} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  newcontainer: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+
+  container: {
+    flex: 1,
+    backgroundColor: 'plum',
+    paddingTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  box: {
+    height: 250,
+    width: 250,
+    // padding:10,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    backgroundColor: 'red',
   },
-  highlight: {
-    fontWeight: '700',
+  boxshadow: {
+    shadowColor: '#3333333',
+    shadowOffset: {
+      width: 6,
+      height: 6,
+    },
+    shadowOpacity: 2.6,
+    shadowRadius: 4,
   },
 });
-
-export default App;
